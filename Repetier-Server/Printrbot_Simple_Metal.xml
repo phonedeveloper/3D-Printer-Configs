@@ -111,8 +111,7 @@ G28 X0 Y0                   ;move X/Y to min endstops, so the head is out of the
 M84                         ;steppers off
 G90                         ;absolute positioning</script>
 		<script name="start">M107    ; start with fan off
-G28 Z10    ; move z above plate
-G28 X0 Y0 ; move x/y to min endstops
+G28 X0 Y0 Z0 ; move x/y to min endstops
 G29      ; auto-level command
 G91      ; relative positioning
 G1 Z+10  ; raise Z
