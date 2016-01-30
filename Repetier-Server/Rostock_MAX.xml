@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<printer>
+	<shape>
+		<grid color="#454545" spacing="10"/>
+		
+	<circle color="#dddddd" radius="150" x="0" y="0"/>
+	</shape>
+	<general>
+		<name>Rostock MAX</name>
+		<slug>Rostock_MAX</slug>
+		<firmwareName>Repetier-Firmware</firmwareName>
+		<printerVariant>delta</printerVariant>
+		<active>true</active>
+		<fan>true</fan>
+		<tempUpdateEvery>1</tempUpdateEvery>
+		<sdcard>false</sdcard>
+		<softwarePower>true</softwarePower>
+		<defaultVolumetric>false</defaultVolumetric>
+	</general>
+	<connection>
+		<serial>
+			<baudrate>115200</baudrate>
+			<device>/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_6493633303735140F120-if00</device>
+			<pingPong>false</pingPong>
+			<inputBufferSize>127</inputBufferSize>
+			<communicationTimeout>30</communicationTimeout>
+			<protocol>0</protocol>
+		</serial>
+	</connection>
+	<movement>
+		<xMin>-150</xMin>
+		<xMax>150</xMax>
+		<xHome>0</xHome>
+		<yMin>-150</yMin>
+		<yMax>150</yMax>
+		<yHome>0</yHome>
+		<zMin>0</zMin>
+		<zMax>365.82</zMax>
+		<zHome>0</zHome>
+		<xyJerk>20</xyJerk>
+		<zJerk>0.30000000000000004</zJerk>
+		<timeMultiplier>1</timeMultiplier>
+		<movebuffer>16</movebuffer>
+		<xySpeed max="2000">100</xySpeed>
+		<zSpeed max="2000">2</zSpeed>
+		<xyPrintAcceleration>100</xyPrintAcceleration>
+		<xyTravelAcceleration>100</xyTravelAcceleration>
+		<zPrintAcceleration>100</zPrintAcceleration>
+		<zTravelAcceleration>100</zTravelAcceleration>
+		<endstops all="true" x="true" y="true" z="true"/>
+		<invert x="false" y="false" z="false"/>
+		<G10Speed>40</G10Speed>
+		<G10Distance>3</G10Distance>
+		<G10LongDistance>40</G10LongDistance>
+		<G11Speed>20</G11Speed>
+		<G11ExtraDistance>0</G11ExtraDistance>
+		<G11ExtraLongDistance>0</G11ExtraLongDistance>
+		<G10ZLift>0.01</G10ZLift>
+	</movement>
+	<extruders>
+		<extruder filamentDiameter="1.75" lastTemp="0" maxTemp="260" num="0">
+			<maxSpeed acceleration="6500" jerk="40" max="50"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="245">ABS 245</temperature>
+				<temperature value="210">PLA 210</temperature>
+				<temperature value="195">PLA 195</temperature>
+			</temperatures>
+		</extruder>
+	</extruders>
+	<heatedBed cooldownPerSecond="0.02" heatupPerSecond="0.2" installed="true" lastTemp="0" maxTemp="120">
+		<temperatures>
+			<temperature value="115">ABS</temperature>
+			<temperature value="50">PLA</temperature>
+		</temperatures>
+	</heatedBed>
+	<quickCommands/>
+	<webcam>
+		<method>0</method>
+		<timelapseMethod>0</timelapseMethod>
+		<staticUrl/>
+		<dynamicUrl/>
+		<orientation>0</orientation>
+		<reloadInterval>3</reloadInterval>
+		<timelapseInterval>20</timelapseInterval>
+		<timelapseHeight>0.1</timelapseHeight>
+		<timelapseLayer>1</timelapseLayer>
+		<timelapseBitrate>1000</timelapseBitrate>
+		<timelapseSelected>0</timelapseSelected>
+		<timelapseFramerate>30</timelapseFramerate>
+	</webcam>
+	<properties/>
+<scripts/>
+</printer>

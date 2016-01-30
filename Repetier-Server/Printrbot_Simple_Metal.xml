@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<printer>
+	<shape>
+		<grid color="#454545" spacing="10"/>
+		
+	<rectangle color="#dddddd" xMax="150" xMin="0" yMax="150" yMin="0"/>
+	</shape>
+	<general>
+		<name>Printrbot Simple Metal</name>
+		<slug>Printrbot_Simple_Metal</slug>
+		<firmwareName>Marlin</firmwareName>
+		<printerVariant>cartesian</printerVariant>
+		<active>true</active>
+		<fan>true</fan>
+		<tempUpdateEvery>1</tempUpdateEvery>
+		<sdcard>true</sdcard>
+		<softwarePower>true</softwarePower>
+		<defaultVolumetric>false</defaultVolumetric>
+	</general>
+	<connection>
+		<serial>
+			<baudrate>115200</baudrate>
+			<device>/dev/serial/by-id/usb-Printrbot_Metal_Simple_Printrbot12345-if00</device>
+			<pingPong>false</pingPong>
+			<inputBufferSize>127</inputBufferSize>
+			<communicationTimeout>30</communicationTimeout>
+			<protocol>0</protocol>
+		</serial>
+	</connection>
+	<movement>
+		<xMin>0</xMin>
+		<xMax>150</xMax>
+		<xHome>0</xHome>
+		<yMin>0</yMin>
+		<yMax>150</yMax>
+		<yHome>150</yHome>
+		<zMin>0</zMin>
+		<zMax>150</zMax>
+		<zHome>0</zHome>
+		<xyJerk>20</xyJerk>
+		<zJerk>0.30000000000000004</zJerk>
+		<timeMultiplier>1</timeMultiplier>
+		<movebuffer>16</movebuffer>
+		<xySpeed max="200">100</xySpeed>
+		<zSpeed max="2">2</zSpeed>
+		<xyPrintAcceleration>1500</xyPrintAcceleration>
+		<xyTravelAcceleration>2500</xyTravelAcceleration>
+		<zPrintAcceleration>100</zPrintAcceleration>
+		<zTravelAcceleration>100</zTravelAcceleration>
+		<endstops all="true" x="true" y="true" z="true"/>
+		<invert x="false" y="false" z="false"/>
+		<G10Speed>50</G10Speed>
+		<G10Distance>3</G10Distance>
+		<G10LongDistance>50</G10LongDistance>
+		<G11Speed>50</G11Speed>
+		<G11ExtraDistance>0</G11ExtraDistance>
+		<G11ExtraLongDistance>0</G11ExtraLongDistance>
+		<G10ZLift>0</G10ZLift>
+	</movement>
+	<extruders>
+		<extruder filamentDiameter="1.75" lastTemp="0" maxTemp="260" num="0">
+			<maxSpeed acceleration="5000" jerk="30" max="30"/>
+			<extrude speed="2"/>
+			<retract speed="30"/>
+			<tempChange cooldownPerSecond="0.5" heatupPerSecond="2"/>
+			<offsets x="0" y="0"/>
+			<temperatures>
+				<temperature value="210">PLA 210</temperature>
+			</temperatures>
+		</extruder>
+	</extruders>
+	<heatedBed cooldownPerSecond="0.02" heatupPerSecond="0.2" installed="false" lastTemp="0" maxTemp="120">
+		<temperatures>
+			<temperature value="115">ABS</temperature>
+			<temperature value="50">PLA</temperature>
+		</temperatures>
+	</heatedBed>
+	<quickCommands/>
+	<webcam>
+		<method>0</method>
+		<timelapseMethod>0</timelapseMethod>
+		<staticUrl/>
+		<dynamicUrl/>
+		<orientation>0</orientation>
+		<reloadInterval>3</reloadInterval>
+		<timelapseInterval>20</timelapseInterval>
+		<timelapseHeight>0.1</timelapseHeight>
+		<timelapseLayer>1</timelapseLayer>
+		<timelapseBitrate>1000</timelapseBitrate>
+		<timelapseSelected>0</timelapseSelected>
+		<timelapseFramerate>30</timelapseFramerate>
+	</webcam>
+	<properties/>
+<scripts>
+		<script name="end">M104 S0						; turn off extruder
+M140 S0                     ; turn off heated bed
+M107                        ; turn off fan
+G91                         ;relative positioning
+G1 E-1 F300                 ;retract the filament a bit before lifting the nozzle, to release some of the pressure
+G1 Z+0.5 E-5 X-20 Y-20 F5000 ;move Z up a bit and retract filament even more
+G28 X0 Y0                   ;move X/Y to min endstops, so the head is out of the way
+M84                         ;steppers off
+G90                         ;absolute positioning</script>
+		<script name="kill">M104 S0						; turn off extruder
+M140 S0                     ; turn off heated bed
+M107                        ; turn off fan
+G91                         ;relative positioning
+G1 E-1 F300                 ;retract the filament a bit before lifting the nozzle, to release some of the pressure
+G1 Z+0.5 E-5 X-20 Y-20 F5000 ;move Z up a bit and retract filament even more
+G28 X0 Y0                   ;move X/Y to min endstops, so the head is out of the way
+M84                         ;steppers off
+G90                         ;absolute positioning</script>
+		<script name="start">M107    ; start with fan off
+G28 Z10    ; move z above plate
+G28 X0 Y0 ; move x/y to min endstops
+G29      ; auto-level command
+G91      ; relative positioning
+G1 Z+10  ; raise Z
+G90      ; absolute positioning
+; at this point, user's G-Code runs, and printer (probably) waits for bed to heat</script>
+		<script name="connect">M107     ; start with fan off
+M104 S0  ; turn off extruder
+M140 S0  ; turn off heated bed
+M84      ; steppers off</script>
+		<script name="pause">; turn stuff off in case user doesn't come back
+G91      ; relative positioning
+G1 E-5 F300  ; retract filament
+G90      ; absolute positioning</script>
+		<script name="continue">G91      ; relative positioning
+G1 E5 F300  ; restore retracted filament
+G90      ; absolulte positioning</script>
+	</scripts>
+</printer>
